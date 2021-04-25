@@ -29,16 +29,15 @@ RUN \
     unzip && \
   echo "**** install bazarr ****" && \
   if [ -z ${BAZARR_VERSION+x} ]; then \
-    BAZARR_VERSION=$(curl -sX GET "https://api.github.com/repos/morpheus65535/bazarr/releases/latest" \
-    | awk '/tag_name/{print $4;exit}' FS='[""]'); \
+    BAZARR_VERSION=v0.9.4 \
   fi && \
   curl -o \
-    /tmp/bazarr.zip -L \
-    "https://github.com/morpheus65535/bazarr/releases/download/${BAZARR_VERSION}/bazarr.zip" && \
+    /tmp/master.zip -L \
+    "https://github.com/derinbay/bazarr/archive/refs/heads/master.zip" && \
   mkdir -p \
     /app/bazarr/bin && \
   unzip \
-    /tmp/bazarr.zip -d \
+    /tmp/master.zip -d \
     /app/bazarr/bin && \
   rm -Rf /app/bazarr/bin/bin && \
   echo "UpdateMethod=docker\nBranch=master\nPackageVersion=${VERSION}\nPackageAuthor=[linuxserver.io](https://linuxserver.io)" > /app/bazarr/package_info && \
