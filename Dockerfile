@@ -54,6 +54,6 @@ RUN \
 # add local files
 COPY root/ /
 
-# ports and volumes
+#  ports and volumes
 EXPOSE 6767
 VOLUME /config
